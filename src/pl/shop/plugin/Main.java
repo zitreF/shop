@@ -9,7 +9,7 @@ import pl.shop.plugin.menu.impl.ShopMenu;
 public final class Main extends JavaPlugin {
 
     private final ItemManager manager = new ItemManager(getConfig().getConfigurationSection("items"));
-    private final ShopMenu shopMenu = new ShopMenu();
+    private final ShopMenu shopMenu = new ShopMenu(manager);
 
     @Override
     public void onEnable() {

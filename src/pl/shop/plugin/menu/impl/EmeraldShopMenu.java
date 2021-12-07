@@ -17,7 +17,7 @@ public final class EmeraldShopMenu extends CustomMenu {
 
         this.itemManager = itemManager;
 
-        for (Map.Entry<Integer, Item> item : itemManager.getItem().entrySet()) {
+        for (Map.Entry<Integer, Item> item : itemManager.getItems().entrySet()) {
             setItem(item.getValue().getItem(), item.getKey());
         }
     }
@@ -27,7 +27,7 @@ public final class EmeraldShopMenu extends CustomMenu {
 
         e.setCancelled(true);
 
-        Item item = itemManager.getItem().get(e.getSlot());
+        Item item = itemManager.getItems().get(e.getSlot());
 
         if (item == null) return;
 

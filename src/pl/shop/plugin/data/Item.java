@@ -28,20 +28,9 @@ public final class Item {
         this.item = builder.setTitle(cs.getString("title")).addLores(cs.getStringList("lore")).build();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getCost() {
-        return cost;
-    }
 
     public ItemStack getItem() {
         return item;
-    }
-
-    public ItemStack getRaw() {
-        return raw;
     }
 
     public Consumer<Player> getOnMouseClicked() {
