@@ -3,18 +3,22 @@ package pl.shop.plugin.managers;
 import org.bukkit.configuration.ConfigurationSection;
 import pl.shop.plugin.data.Item;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class ItemManager {
 
-    private final Set<Item> items;
+    private final Map<Integer, Item> item;
 
     public ItemManager(ConfigurationSection cs) {
-        this.items = cs.getKeys(false).stream().map(cs::getConfigurationSection).map(Item::new).collect(Collectors.toSet());
+        this.item = new HashMap<>();
+        for (String s : cs.getKeys(false)) {
+            ConfigurationSection section = cs.getConfigurationSection(s);
+            item.put(section.getInt("slot"), new Item(section));
+        }
     }
 
-    public Set<Item> getItems() {
-        return items;
+    public Map<Integer, Item> getItem() {
+        return item;
     }
 }
