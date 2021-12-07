@@ -3,8 +3,12 @@ package pl.shop.plugin.data;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pl.shop.plugin.utils.ChatUtil;
 import pl.shop.plugin.utils.ItemBuilder;
+
+import java.util.function.Consumer;
 
 public final class Item {
 
@@ -38,5 +42,13 @@ public final class Item {
 
     public ItemStack getRaw() {
         return raw;
+    }
+
+    public Consumer<Player> getOnMouseClicked() {
+        return player -> {
+            player.getInventory().removeItem(new ItemStack(Material.EMERALD, cost));
+            player.getInventory().addItem(raw);
+            player.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Kupiles &e%d &7%s", raw.getAmount(), name)));
+        };
     }
 }
