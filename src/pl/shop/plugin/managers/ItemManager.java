@@ -8,13 +8,19 @@ import java.util.stream.Collectors;
 
 public final class ItemManager {
 
-    private final Map<Integer, Item> items;
+    private final Map<Integer, Item> emeralds;
+    private final Map<Integer, Item> sells;
 
     public ItemManager(ConfigurationSection cs) {
-        this.items = cs.getKeys(false).stream().map(cs::getConfigurationSection).collect(Collectors.toMap(config -> config.getInt("slot"), Item::new));
+        this.emeralds = cs.getKeys(false).stream().map(cs::getConfigurationSection).collect(Collectors.toMap(config -> config.getInt("slot"), Item::new));
+        this.sells = cs.getKeys(false).stream().map(cs::getConfigurationSection).collect(Collectors.toMap(config -> config.getInt("slot"), Item::new));
     }
 
-    public Map<Integer, Item> getItems() {
-        return items;
+    public Map<Integer, Item> getEmeralds() {
+        return emeralds;
+    }
+
+    public Map<Integer, Item> getSells() {
+        return sells;
     }
 }
