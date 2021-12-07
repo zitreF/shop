@@ -1,10 +1,13 @@
 package pl.shop.plugin.menu.impl;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 import pl.shop.plugin.data.Item;
 import pl.shop.plugin.managers.ItemManager;
 import pl.shop.plugin.menu.CustomMenu;
+import pl.shop.plugin.utils.ChatUtil;
 
 import java.util.Map;
 
@@ -31,6 +34,8 @@ public final class EmeraldShopMenu extends CustomMenu {
 
         if (item == null) return;
 
-        item.getOnMouseClicked().accept(p);
+        p.getInventory().removeItem(new ItemStack(Material.EMERALD, item.getCost()));
+        p.getInventory().addItem(item.getRaw());
+        p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Kupiles &e%d &7%s", item.getRaw().getAmount(), item.getName())));
     }
 }

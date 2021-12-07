@@ -28,16 +28,19 @@ public final class Item {
         this.item = builder.setTitle(cs.getString("title")).addLores(cs.getStringList("lore")).build();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public ItemStack getRaw() {
+        return raw;
+    }
 
     public ItemStack getItem() {
         return item;
-    }
-
-    public Consumer<Player> getOnMouseClicked() {
-        return player -> {
-            player.getInventory().removeItem(new ItemStack(Material.EMERALD, cost));
-            player.getInventory().addItem(raw);
-            player.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Kupiles &e%d &7%s", raw.getAmount(), name)));
-        };
     }
 }
