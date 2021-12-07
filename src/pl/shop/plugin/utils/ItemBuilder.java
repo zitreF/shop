@@ -2,13 +2,11 @@ package pl.shop.plugin.utils;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class ItemBuilder {
 
@@ -18,6 +16,7 @@ public final class ItemBuilder {
     private String title;
     private final List<String> lore;
     private final Map<Enchantment, Integer> enchants;
+    private ItemFlag itemFlag;
 
     public ItemBuilder(final Material mat) {
         this(mat, 1);
@@ -28,12 +27,13 @@ public final class ItemBuilder {
     }
 
     public ItemBuilder(final Material mat, final int amount, final short data) {
-        this.title = null;
+        this.title = "";
         this.lore = new ArrayList<>();
         this.enchants = new HashMap<>();
         this.mat = mat;
         this.amount = amount;
         this.data = data;
+        this.itemFlag = null;
     }
 
     public ItemBuilder setTitle(final String title) {
@@ -60,14 +60,22 @@ public final class ItemBuilder {
         return this;
     }
 
+    public ItemBuilder addItemFlag(ItemFlag itemFlag) {
+        this.itemFlag = itemFlag;
+        return this;
+    }
+
     public ItemStack build() {
         ItemStack item = new ItemStack(this.mat, this.amount, this.data);
         final ItemMeta meta = item.getItemMeta();
-        if (this.title != null) {
+        if (!this.title.isEmpty()) {
             meta.setDisplayName(this.title);
         }
         if (!this.lore.isEmpty()) {
             meta.setLore(this.lore);
+        }
+        if (itemFlag != null) {
+            meta.addItemFlags(itemFlag);
         }
         item.setItemMeta(meta);
         item.addUnsafeEnchantments(this.enchants);
