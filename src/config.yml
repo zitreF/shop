@@ -26,3 +26,18 @@ shop:
       lore:
         - "&8>> &71"
         - "&8>> &e2"
+  coins:
+    bambikk:
+      name: Miecz
+      cost: 32
+      material: WOOD_SWORD
+      amount: 16
+      slot: 11
+      data: 0
+      title: "&8>> &3DREWNIANY MIECZ &8<<"
+      lore:
+        - "&8>> &71"
+        - "&8>> &e2"
+      enchantments:
+        - "DURABILITY:5"
+        - "DAMAGE_ALL:3"

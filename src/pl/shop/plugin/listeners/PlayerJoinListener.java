@@ -22,6 +22,6 @@ public final class PlayerJoinListener implements Listener {
 
         User user = (userManager.getUserByName(p.getName()) == null ?  new User(p.getName(), p.getUniqueId(), userManager) : userManager.getUserByName(p.getName()));
 
-        user.setCoins(1000);
+        if (!p.hasPlayedBefore()) user.setCoins(1000);
     }
 }
