@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pl.shop.plugin.commands.ShopCommand;
 import pl.shop.plugin.database.MySQL;
 import pl.shop.plugin.listeners.InventoryClickListener;
+import pl.shop.plugin.listeners.PlayerJoinListener;
 import pl.shop.plugin.managers.ItemManager;
 import pl.shop.plugin.managers.UserManager;
 import pl.shop.plugin.menu.impl.ShopMenu;
@@ -18,13 +19,16 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        saveDefaultConfig();
+
         new MySQL();
 
         userManager.load();
 
-        getCommand("sklep").setExecutor(new ShopCommand(shopMenu));
+        getCommand("sklep").setExecutor(new ShopCommand(shopMenu, userManager));
 
         getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(userManager), this);
     }
 
     @Override

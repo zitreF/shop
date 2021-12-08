@@ -1,14 +1,11 @@
 package pl.shop.plugin.menu.impl;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.inventory.ItemStack;
 import pl.shop.plugin.data.Item;
 import pl.shop.plugin.managers.ItemManager;
 import pl.shop.plugin.managers.UserManager;
 import pl.shop.plugin.menu.CustomMenu;
-import pl.shop.plugin.user.User;
 import pl.shop.plugin.utils.ChatUtil;
 
 import java.util.Map;
@@ -39,10 +36,17 @@ public final class SellShopMenu extends CustomMenu {
 
         if (item == null) return;
 
-        p.getInventory().removeItem(item.getRaw());
+        if (p.getInventory().containsAtLeast(item.getRaw(), item.getRaw().getAmount())) {
 
-        userManager.getUserByName(p.getName()).addCoins(item.getCost());
+            p.getInventory().removeItem(item.getRaw());
 
-        p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Sprzedales %s za &e%d", item.getName(), item.getCost())));
+            userManager.getUserByName(p.getName()).addCoins(item.getCost());
+
+            p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Sprzedales %s za &e%d", item.getName(), item.getCost())));
+
+            return;
+        }
+
+        p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Nie posiadasz &e%d %s &7! &8<<", item.getRaw().getAmount(), item.getName())));
     }
 }

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="sklepsy:jar">
+    <output-path>$PROJECT_DIR$/../../Serwery MC/Serwer MC/plugins</output-path>
+    <root id="archive" name="sklepsy.jar">
+      <element id="module-output" name="sklepsy" />
+      <element id="extracted-dir" path="D:/Downloads/HikariCP-4.0.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,28 @@
+shop:
+  emerald:
+    bambik:
+      name: Miecz
+      cost: 32
+      material: DIAMOND_SWORD
+      amount: 16
+      slot: 12
+      data: 0
+      title: "&8>> &3DIAMENTOWY MIECZ &8<<"
+      lore:
+        - "&8>> &71"
+        - "&8>> &e2"
+      enchantments:
+        - "DURABILITY:5"
+        - "DAMAGE_ALL:3"
+  sell:
+    bambiczek:
+      name: Dircik
+      slot: 15
+      cost: 64
+      material: DIRT
+      amount: 32
+      data: 0
+      title: "&8>> &7DIRT &8<<"
+      lore:
+        - "&8>> &71"
+        - "&8>> &e2"

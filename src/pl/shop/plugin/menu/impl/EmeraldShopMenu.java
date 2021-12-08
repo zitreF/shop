@@ -34,8 +34,13 @@ public final class EmeraldShopMenu extends CustomMenu {
 
         if (item == null) return;
 
-        p.getInventory().removeItem(new ItemStack(Material.EMERALD, item.getCost()));
-        p.getInventory().addItem(item.getRaw());
-        p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Kupiles &e%d &7%s", item.getRaw().getAmount(), item.getName())));
+        if (p.getInventory().contains(Material.EMERALD, item.getCost())) {
+            p.getInventory().removeItem(new ItemStack(Material.EMERALD, item.getCost()));
+            p.getInventory().addItem(item.getRaw());
+            p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Kupiles &e%d &7%s", item.getRaw().getAmount(), item.getName())));
+            return;
+        }
+
+        p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor("&8>> &7Nie posiadasz &e" + item.getCost() + " &7emeraldow! &8<<"));
     }
 }

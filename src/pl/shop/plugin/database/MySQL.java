@@ -25,7 +25,7 @@ public final class MySQL {
         this.dataSource.addDataSourceProperty("prepStmtCacheSize", 250);
         this.dataSource.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
         this.dataSource.addDataSourceProperty("useServerPrepStmts", true);
-        executeUpdate("CREATE TABLE IF NOT EXISTS users(`uuid` text not null, `name` text not null, `coins` BIGINTEGER(20));");
+        executeUpdate("CREATE TABLE IF NOT EXISTS users(`uuid` text not null, `name` text not null, `coins` BIGINT(20));");
     }
 
     public void executeQuery(final String query, final Consumer<ResultSet> action) {

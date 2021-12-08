@@ -1,6 +1,7 @@
 package pl.shop.plugin.user;
 
 import pl.shop.plugin.database.MySQL;
+import pl.shop.plugin.managers.UserManager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,10 +13,12 @@ public final class User {
     private final UUID uuid;
     private int coins;
 
-    public User(String name, UUID uuid) {
+    public User(String name, UUID uuid, UserManager userManager) {
         this.name = name;
         this.uuid = uuid;
+        this.coins = 0;
         this.insert();
+        userManager.addUser(this);
     }
 
     public User(ResultSet rs) throws SQLException {
@@ -38,10 +41,6 @@ public final class User {
 
     public String getName() {
         return name;
-    }
-
-    public UUID getUuid() {
-        return uuid;
     }
 
     public void update() {
