@@ -4,23 +4,22 @@ import pl.shop.plugin.database.MySQL;
 import pl.shop.plugin.user.User;
 
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public final class UserManager {
 
-    private final Set<User> users;
+    private final Map<UUID, User> users;
 
     public UserManager() {
-        this.users = new HashSet<>();
+        this.users = new HashMap<>();
     }
 
-    public User getUserByName(String name) {
-        return users.stream().filter(user -> user.getName().equals(name)).findFirst().orElse(null);
+    public User getUserByUUID(UUID uuid) {
+        return users.get(uuid);
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    public void addUser(UUID uuid, User user) {
+        users.put(uuid, user);
     }
 
     public void load() {
@@ -28,7 +27,7 @@ public final class UserManager {
             try {
                 while (rs.next()) {
                     User u = new User(rs);
-                    users.add(u);
+                    users.put(u.getUUID(), u);
                 }
                 rs.close();
             } catch (SQLException ex) {
@@ -37,7 +36,7 @@ public final class UserManager {
         });
     }
 
-    public Set<User> getUsers() {
+    public Map<UUID, User> getUsers() {
         return users;
     }
 }

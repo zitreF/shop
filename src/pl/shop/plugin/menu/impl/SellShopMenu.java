@@ -40,7 +40,7 @@ public final class SellShopMenu extends CustomMenu {
 
             p.getInventory().removeItem(item.getRaw());
 
-            userManager.getUserByName(p.getName()).addCoins(item.getCost());
+            userManager.getUserByUUID(p.getUniqueId()).addCoins(item.getCost());
 
             p.sendTitle(ChatUtil.fixColor("&8>> &9&lSKLEP &8<<"), ChatUtil.fixColor(String.format("&8>> &7Sprzedales %s za &e%d", item.getName(), item.getCost())));
 

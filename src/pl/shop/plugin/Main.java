@@ -10,6 +10,9 @@ import pl.shop.plugin.managers.UserManager;
 import pl.shop.plugin.menu.impl.ShopMenu;
 import pl.shop.plugin.user.User;
 
+import java.util.Map;
+import java.util.UUID;
+
 public final class Main extends JavaPlugin {
 
     private final ItemManager manager = new ItemManager(getConfig());
@@ -33,8 +36,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for (User u : userManager.getUsers()) {
-            u.update();
+        for (Map.Entry<UUID, User> u : userManager.getUsers().entrySet()) {
+            u.getValue().update();
         }
     }
 }

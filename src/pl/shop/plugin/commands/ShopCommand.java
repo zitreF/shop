@@ -22,7 +22,7 @@ public final class ShopCommand implements CommandExecutor {
 
         Player p = (Player) commandSender;
 
-        p.openInventory(menu.getInventory(userManager.getUserByName(p.getName())));
+        p.openInventory(menu.getInventory(userManager.getUserByUUID(p.getUniqueId())));
 
         return false;
     }

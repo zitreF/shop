@@ -38,7 +38,7 @@ public final class CoinsShopMenu extends CustomMenu {
 
         if (item == null) return;
 
-        User u = userManager.getUserByName(p.getName());
+        User u = userManager.getUserByUUID(p.getUniqueId());
 
         if (u.getCoins() >= item.getCost()) {
 

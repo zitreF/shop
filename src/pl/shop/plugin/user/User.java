@@ -18,7 +18,7 @@ public final class User {
         this.uuid = uuid;
         this.coins = 0;
         this.insert();
-        userManager.addUser(this);
+        userManager.addUser(uuid, this);
     }
 
     public User(ResultSet rs) throws SQLException {
@@ -41,6 +41,10 @@ public final class User {
 
     public String getName() {
         return name;
+    }
+
+    public UUID getUUID() {
+        return uuid;
     }
 
     public void update() {
