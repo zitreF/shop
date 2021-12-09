@@ -1,8 +1,6 @@
 main: pl.shop.plugin.Main
 version: 1.0
 name: Sklepsy
-authors:
-  - teemo
-  - ksanaroks
+author: teemo
 commands:
   sklep:
