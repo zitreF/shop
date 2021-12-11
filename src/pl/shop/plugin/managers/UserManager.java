@@ -24,7 +24,7 @@ public final class UserManager {
     }
 
     public void load() {
-        Main.getMySQL().executeQuery("SELECT * FROM `users`", rs -> {
+        Main.getInstance().getMySQL().executeQuery("SELECT * FROM `users`", rs -> {
             try {
                 while (rs.next()) {
                     User u = new User(rs);

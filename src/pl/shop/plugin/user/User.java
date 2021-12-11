@@ -49,10 +49,10 @@ public final class User {
     }
 
     public void update() {
-        Main.getMySQL().executeUpdate("UPDATE users SET name = '"+this.name+"', coins = '"+this.coins+"' WHERE `uuid` = '" + this.uuid + "';");
+        Main.getInstance().getMySQL().executeUpdate("UPDATE users SET name = '"+this.name+"', coins = '"+this.coins+"' WHERE `uuid` = '" + this.uuid + "';");
     }
 
     private void insert() {
-        Main.getMySQL().executeUpdate("INSERT INTO users(uuid, name, coins) VALUES ('"+this.uuid+"', '"+this.name+"', '"+this.coins+"');");
+        Main.getInstance().getMySQL().executeUpdate("INSERT INTO users(uuid, name, coins) VALUES ('"+this.uuid+"', '"+this.name+"', '"+this.coins+"');");
     }
 }

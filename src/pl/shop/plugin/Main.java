@@ -18,10 +18,13 @@ public final class Main extends JavaPlugin {
     private final ItemManager manager = new ItemManager(getConfig());
     private final UserManager userManager = new UserManager();
     private final ShopMenu shopMenu = new ShopMenu(manager, userManager);
-    private static final MySQL mySQL = new MySQL();
+    private final MySQL mySQL = new MySQL();
+    private static Main instance;
 
     @Override
     public void onEnable() {
+
+        Main.instance = this;
 
         saveDefaultConfig();
 
@@ -40,7 +43,11 @@ public final class Main extends JavaPlugin {
         }
     }
 
-    public static MySQL getMySQL() {
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public MySQL getMySQL() {
         return mySQL;
     }
 }
