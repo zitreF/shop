@@ -1,5 +1,6 @@
 package pl.shop.plugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.shop.plugin.commands.ShopCommand;
 import pl.shop.plugin.database.MySQL;
@@ -38,9 +39,15 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for (Map.Entry<UUID, User> u : userManager.getUsers().entrySet()) {
-            u.getValue().update();
-        }
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            for (User u : userManager.getUsers().values()) {
+                u.update();
+            }
+        });
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
     }
 
     public static Main getInstance() {

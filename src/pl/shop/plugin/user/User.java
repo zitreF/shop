@@ -1,7 +1,7 @@
 package pl.shop.plugin.user;
 
+import org.bukkit.Bukkit;
 import pl.shop.plugin.Main;
-import pl.shop.plugin.database.MySQL;
 import pl.shop.plugin.managers.UserManager;
 
 import java.sql.ResultSet;
@@ -14,12 +14,12 @@ public final class User {
     private final UUID uuid;
     private int coins;
 
-    public User(String name, UUID uuid, UserManager userManager) {
+    public User(String name, UUID uuid) {
         this.name = name;
         this.uuid = uuid;
         this.coins = 0;
-        this.insert();
-        userManager.addUser(uuid, this);
+        Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), this::insert);
+        Main.getInstance().getUserManager().addUser(uuid, this);
     }
 
     public User(ResultSet rs) throws SQLException {
@@ -38,10 +38,6 @@ public final class User {
 
     public void addCoins(int amount) {
         this.coins+=amount;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public UUID getUUID() {
