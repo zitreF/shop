@@ -1,5 +1,6 @@
 package pl.shop.plugin.managers;
 
+import pl.shop.plugin.Main;
 import pl.shop.plugin.database.MySQL;
 import pl.shop.plugin.user.User;
 
@@ -23,7 +24,7 @@ public final class UserManager {
     }
 
     public void load() {
-        MySQL.getInstance().executeQuery("SELECT * FROM `users`", rs -> {
+        Main.getMySQL().executeQuery("SELECT * FROM `users`", rs -> {
             try {
                 while (rs.next()) {
                     User u = new User(rs);

@@ -10,10 +10,8 @@ import java.util.function.Consumer;
 public final class MySQL {
 
     private final HikariDataSource dataSource;
-    private static MySQL instance;
 
     public MySQL() {
-        MySQL.instance = this;
         this.dataSource = new HikariDataSource();
         int poolSize = 5;
         this.dataSource.setMaximumPoolSize(poolSize);
@@ -50,9 +48,5 @@ public final class MySQL {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static MySQL getInstance() {
-        return instance;
     }
 }

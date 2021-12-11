@@ -18,13 +18,12 @@ public final class Main extends JavaPlugin {
     private final ItemManager manager = new ItemManager(getConfig());
     private final UserManager userManager = new UserManager();
     private final ShopMenu shopMenu = new ShopMenu(manager, userManager);
+    private static final MySQL mySQL = new MySQL();
 
     @Override
     public void onEnable() {
 
         saveDefaultConfig();
-
-        new MySQL();
 
         userManager.load();
 
@@ -39,5 +38,9 @@ public final class Main extends JavaPlugin {
         for (Map.Entry<UUID, User> u : userManager.getUsers().entrySet()) {
             u.getValue().update();
         }
+    }
+
+    public static MySQL getMySQL() {
+        return mySQL;
     }
 }

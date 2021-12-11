@@ -1,5 +1,6 @@
 package pl.shop.plugin.user;
 
+import pl.shop.plugin.Main;
 import pl.shop.plugin.database.MySQL;
 import pl.shop.plugin.managers.UserManager;
 
@@ -48,10 +49,10 @@ public final class User {
     }
 
     public void update() {
-        MySQL.getInstance().executeUpdate("UPDATE users SET name = '"+this.name+"', coins = '"+this.coins+"' WHERE `uuid` = '" + this.uuid + "';");
+        Main.getMySQL().executeUpdate("UPDATE users SET name = '"+this.name+"', coins = '"+this.coins+"' WHERE `uuid` = '" + this.uuid + "';");
     }
 
     private void insert() {
-        MySQL.getInstance().executeUpdate("INSERT INTO users(uuid, name, coins) VALUES ('"+this.uuid+"', '"+this.name+"', '"+this.coins+"');");
+        Main.getMySQL().executeUpdate("INSERT INTO users(uuid, name, coins) VALUES ('"+this.uuid+"', '"+this.name+"', '"+this.coins+"');");
     }
 }
